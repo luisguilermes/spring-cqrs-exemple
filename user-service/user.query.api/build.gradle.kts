@@ -7,10 +7,12 @@ apply(plugin = "org.springframework.boot")
 apply(plugin = "io.spring.dependency-management")
 
 dependencies {
-    project(":user.core")
+    implementation(project(":user.core"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
     implementation("org.springframework.boot:spring-boot-starter-security")
 
-    implementation("org.axonframework:axon-spring-boot-starter:4.4")
+    implementation("org.axonframework:axon-spring-boot-starter:4.5.8")
 }

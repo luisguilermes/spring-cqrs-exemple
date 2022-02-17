@@ -1,6 +1,6 @@
 server:
   port: 8001
-
+  application.name: user-command-service
 spring:
   data:
     mongodb:

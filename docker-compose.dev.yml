@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+
+  axon-server:
+    image: axoniq/axonserver:latest
+    ports:
+      - "8024:8024"
+      - "8124:8124"
+
+  database:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/PostgreSQL:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      TZ: 'America/Sao_Paulo'
+    volumes:
+      - ./data/mongodb_data_container:/data/db
+
+#  mongo-express:
+#    image: mongo-express
+#    ports:
+#      - 8081:8081
+#    environment:
+#      ME_CONFIG_BASICAUTH_USERNAME: admin
+#      ME_CONFIG_BASICAUTH_PASSWORD: MongoExpress2021!
+#      ME_CONFIG_MONGODB_PORT: 27017
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: MongoDB2021!
+#    depends_on:
+#      - mongo
+
+#    networks:
+#      - product-compose-network
+#  localstack:
+#    image: localstack/localstack
+#    ports:
+#      - "4576:4576"
+#      - "8080:8080"
+#    environment:
+#      - SERVICES=sqs
+#networks:
+#  product-compose-network:
+#    driver: bridge
